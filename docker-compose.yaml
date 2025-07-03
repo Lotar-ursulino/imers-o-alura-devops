@@ -1,0 +1,20 @@
+services:
+  api:
+    # Constrói a imagem a partir do Dockerfile no diretório atual.
+    build: .
+    # Define um nome para o contêiner para fácil identificação.
+    container_name: api
+    ports:
+      - "8000:8000"
+    # O banco de dados SQLite será criado dentro do contêiner,
+    # tornando-o efêmero (os dados serão perdidos se o contêiner for recriado).
+    # Seção de Volumes
+    # Mapeia o diretório atual (seu código-fonte) para o diretório /app no contêiner.
+    # 1. Permite o "live-reloading": alterações no código são refletidas no contêiner.
+    # 2. Torna o banco de dados 'escola.db' persistente, salvando-o no seu computador.
+    volumes:
+      - .:/app
+    # Seção de Ambiente (Environment)
+    # Define variáveis de ambiente para o contêiner. É a melhor forma de passar
+    # configurações, como chaves de API ou strings de conexão de banco de dados.
+    
